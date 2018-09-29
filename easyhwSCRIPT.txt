@@ -1,0 +1,31 @@
+Sub StockCopOne()
+
+
+Dim ws As Worksheet
+For Each ws In Worksheets
+
+
+ws.Range("A:A").Copy ws.Range("J1")
+ws.Range("J:J").RemoveDuplicates Columns:=1, Header:=xlNo
+    
+lastrow1 = ws.Cells(Rows.Count, 1).End(xlUp).Row
+lastrow2 = ws.Cells(Rows.Count, 10).End(xlUp).Row
+
+For i = 2 To lastrow1
+For j = 2 To lastrow2
+
+
+If ws.Cells(i, 1).Value = ws.Cells(j, 10).Value Then
+ws.Cells(j, 11).Value = ws.Cells(j, 11).Value + ws.Cells(i, 7).Value
+
+End If
+
+Next j
+
+Next i
+
+Next ws
+
+    
+
+End Sub
